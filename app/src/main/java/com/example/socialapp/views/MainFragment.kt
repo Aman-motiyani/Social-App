@@ -1,14 +1,15 @@
 package com.example.socialapp.views
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.socialapp.ISAdapter
+import com.example.socialapp.utility.ISAdapter
 import com.example.socialapp.R
-import com.example.socialapp.SAdapter
+import com.example.socialapp.utility.SAdapter
 import com.example.socialapp.daos.PostDao
 import com.example.socialapp.models.Post
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -32,7 +33,6 @@ class MainFragment : Fragment() , ISAdapter {
        setUpRecyclerView()
     }
 
-
     private fun setUpRecyclerView() {
         postDao = PostDao()
         val postsCollections = postDao.postCollections
@@ -45,9 +45,11 @@ class MainFragment : Fragment() , ISAdapter {
         recycleView.layoutManager = LinearLayoutManager(activity)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onStart() {
         super.onStart()
         adapter.startListening()
+        adapter.notifyDataSetChanged()
     }
 
     override fun onStop() {

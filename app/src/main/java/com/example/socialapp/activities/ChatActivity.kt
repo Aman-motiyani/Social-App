@@ -28,7 +28,7 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat)
 
         setUpRecyclerView()
-
+        supportActionBar?.title = "All Users"
     }
 
     private fun setUpRecyclerView() {

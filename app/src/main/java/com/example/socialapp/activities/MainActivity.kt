@@ -68,17 +68,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.Logout) {
-            Firebase.auth.signOut()
-            Toast.makeText(this,"Sign out Successful",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, SignInActivity::class.java)
+        if (item.itemId == R.id.chat) {
+            val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
         }
-
-        if (item.itemId == R.id.newPost) {
-            loadFragment(PostFragment())
-        }
-
         return super.onOptionsItemSelected(item)
     }
 

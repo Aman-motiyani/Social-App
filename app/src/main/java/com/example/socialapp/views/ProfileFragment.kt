@@ -12,14 +12,19 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.socialapp.R
 import com.example.socialapp.activities.SignInActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 class ProfileFragment : Fragment() {
 
     lateinit var mView: View
     private val auth = Firebase.auth
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,11 +34,19 @@ class ProfileFragment : Fragment() {
 
         mView = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        mView.signOutt.setOnClickListener {
-            auth.signOut()
-            Toast.makeText(activity, "Sign out Successful", Toast.LENGTH_SHORT).show()
-            val intent = Intent(activity, SignInActivity::class.java)
-            startActivity(intent)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient= context?.let { GoogleSignIn.getClient(it,gso) }!!
+
+        signOutt.setOnClickListener {
+            mGoogleSignInClient.signOut().addOnCompleteListener {
+                Toast.makeText(activity, "Sign out Successful", Toast.LENGTH_SHORT).show()
+                val intent = Intent(activity, SignInActivity::class.java)
+                startActivity(intent)
+            }
+
         }
         return mView
     }

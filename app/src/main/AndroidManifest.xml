@@ -25,6 +25,12 @@
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".activities.ChatActivity"
+            android:theme="@style/Theme.SocialApp" />
+        <activity
+            android:name=".activities.TextActivity"
+            android:theme="@style/Theme.SocialApp" />
     </application>
 
 </manifest>
