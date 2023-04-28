@@ -113,4 +113,9 @@ class SignInActivity : AppCompatActivity() {
             Progressbar.visibility = View.GONE
         }
     }
+
+    fun signOut() {
+        auth.signOut()
+        googleSignInClient.signOut()
+    }
 }

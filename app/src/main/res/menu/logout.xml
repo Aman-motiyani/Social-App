@@ -9,8 +9,8 @@
         app:showAsAction="always"
         />
     <item
-        android:id="@+id/Logout"
-        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:id="@+id/message"
+        android:icon="@drawable/ic_baseline_chat_24"
         android:title="Logout"
         app:showAsAction="always"
         />

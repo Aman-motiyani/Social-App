@@ -2,19 +2,17 @@ package com.example.socialapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.socialapp.*
-import com.example.socialapp.daos.PostDao
+import androidx.fragment.app.FragmentManager
+import com.example.socialapp.R
 import com.example.socialapp.views.MainFragment
 import com.example.socialapp.views.PostFragment
 import com.example.socialapp.views.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -55,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private  fun loadFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction().apply {
+        supportFragmentManager.beginTransaction().apply {
             replace(R.id.frameLayout,fragment)
             addToBackStack(null)
             commit()
@@ -68,10 +66,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.Logout) {
-            Firebase.auth.signOut()
-            Toast.makeText(this,"Sign out Successful",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, SignInActivity::class.java)
+        if (item.itemId == R.id.message) {
+            val intent = Intent(this , ChatActivity::class.java)
             startActivity(intent)
         }
 
@@ -80,6 +76,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        loadFragment(MainFragment())
+        super.onResume()
     }
 
 }
