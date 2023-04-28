@@ -1,4 +1,4 @@
-package com.example.socialapp.utility
+package com.example.socialapp
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.socialapp.R
 import com.example.socialapp.models.Post
+import com.example.socialapp.utility.Utils
 import com.example.socialapp.views.MainFragment
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -36,7 +36,7 @@ class SAdapter(options: FirestoreRecyclerOptions<Post>, private val listener: Ma
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: SViewHolder, position: Int, model: Post) {
+    override fun onBindViewHolder(holder: SViewHolder, position: Int,model: Post) {
         holder.postText.text = model.text
         holder.userText.text = model.createdBy.displayName
         Glide.with(holder.userImage.context).load(model.createdBy.imageUrl).circleCrop().into(holder.userImage)
@@ -47,11 +47,9 @@ class SAdapter(options: FirestoreRecyclerOptions<Post>, private val listener: Ma
         val currentUserId = auth.currentUser!!.uid
         val isLiked = model.likedBy.contains(currentUserId)
         if(isLiked) {
-            holder.likeButton.setImageDrawable(ContextCompat.getDrawable(holder.likeButton.context,
-                R.drawable.ic_baseline_favorite_24))
+            holder.likeButton.setImageDrawable(ContextCompat.getDrawable(holder.likeButton.context, R.drawable.ic_baseline_favorite_24))
         } else {
-            holder.likeButton.setImageDrawable(ContextCompat.getDrawable(holder.likeButton.context,
-                R.drawable.unliked))
+            holder.likeButton.setImageDrawable(ContextCompat.getDrawable(holder.likeButton.context, R.drawable.unliked))
         }
     }
 }

@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.socialapp.utility.ISAdapter
+import com.example.socialapp.ISAdapter
 import com.example.socialapp.R
-import com.example.socialapp.utility.SAdapter
+import com.example.socialapp.SAdapter
 import com.example.socialapp.daos.PostDao
 import com.example.socialapp.models.Post
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
