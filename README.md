@@ -8,3 +8,6 @@ An android social media blogging app using Google Firestore .
 ![Screenshot_20230219_225242](https://user-images.githubusercontent.com/124293909/219965950-04a58832-3d58-4bbf-9484-7210de23ac35.png)
 
 ![Screenshot_20230219_225225](https://user-images.githubusercontent.com/124293909/219965955-71b5ae35-d61d-4dbe-a3e3-b94e1fe721d5.png)
+
+![Screenshot 2023-04-28 151242](https://user-images.githubusercontent.com/124293909/235115356-2e6038e4-4add-4684-9492-c7ac6abb716b.png)
+
